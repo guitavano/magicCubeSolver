@@ -5,9 +5,19 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: lightgray;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.clicker{
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.clicker:hover{
+  transform: scale(0.9);
 }
