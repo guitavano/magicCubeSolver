@@ -141,7 +141,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Magic Cube Solver</h1>
+      <h1>Magic Cube Solver - Building 🚧</h1>
       <p>Left Click: Right Move</p>
       <p>Right Click: Left Move</p>
       <div className='cube-container'>

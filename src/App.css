@@ -73,6 +73,7 @@ h1{
   width: 200px;
   height: 200px;
   perspective: 600px;
+  margin-top: 50px;
 }
 
 .cube{
@@ -81,6 +82,7 @@ h1{
   position: relative;
   transform-style: preserve-3d;
   transition: transform 1s;
+  transform: translateZ(-100px) rotateY( 310deg);
 }
 
 .side{
@@ -115,35 +117,35 @@ h1{
 .side.U{
   position: absolute;
   transform: rotateX( 90deg);
-  transform: rotateX( 90deg) translateZ(100px);
+  transform: rotateX( 90deg) translateZ(105px);
 }
 
 .side.L{
   position: absolute;
   transform: rotateY(-90deg);
-  transform: rotateY(-90deg) translateZ(100px);
+  transform: rotateY(-90deg) translateZ(105px);
 }
 
 .side.F{
   position: absolute;
   transform: rotateY(  0deg); 
-  transform: rotateY(  0deg) translateZ(100px);
+  transform: rotateY(  0deg) translateZ(105px);
 }
 
 .side.R{
   position: absolute;
   transform: rotateY( 90deg);
-  transform: rotateY( 90deg) translateZ(100px);
+  transform: rotateY( 90deg) translateZ(105px);
 }
 
 .side.B{
   position: absolute;
   transform: rotateY(180deg);
-  transform: rotateY(180deg) translateZ(100px); 
+  transform: rotateY(180deg) translateZ(105px); 
 }
 
 .side.D{
   position: absolute;
   transform: rotateX(-90deg); 
-  transform: rotateX(-90deg) translateZ(100px);
+  transform: rotateX(-90deg) translateZ(105px);
 }
