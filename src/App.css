@@ -68,30 +68,40 @@
 .cube{
   display: flex;
   flex-wrap: wrap;
-  width: 600px;
+  width: 640px;
+  position: relative;
 }
 
 .side{
   display: grid;
   grid-template-columns: 50px 50px 50px;
+  background-color: black;
+  margin: 2px;
+  margin-top: 155px;
+  padding: 2px;
+  border-radius: 5px;
 }
 
 .block{
   margin: 2px;
   width: 45px;
   height: 45px;
+  font-size: 0px;
 }
 
 .side:first-child{
-  width: 100%;
-  padding-left: 150px;
+  position: absolute;
+  left: 158px;
+  margin-top: 0px;
 }
 
 .side:last-child{
-  width: 100%;
-  padding-left: 150px;
+  position: absolute;
+  left: 158px;
+  bottom: -155px;
+  margin-top: 0px;
 }
 
 .cube-container{
-  margin-top: 100px;
+  margin-top: 50px;
 }
