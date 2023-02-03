@@ -26,43 +26,43 @@ function App() {
     let newCube = [...cube]
 
     if(clickedSide.name === "U"){
-      array = rotateMidPieces(array)
-      array = rotateCornerPieces(array)
+      array = rotateMidPieces(array, direction)
+      array = rotateCornerPieces(array, direction)
 
       newCube = rotateSides(newCube, direction, ["1","2","3","4"], ["1","1","1","1"], ["0","0","0","0"], ["2","2","2","2"])
 
       newCube[0].value = array
     }else if(clickedSide.name === "L"){
-      array = rotateMidPieces(array)
-      array = rotateCornerPieces(array)
+      array = rotateMidPieces(array, direction)
+      array = rotateCornerPieces(array, direction)
 
       newCube = rotateSides(newCube, direction, ["4","5","2","0"], ["5","3","3","3"], ["8","0","0","0"], ["2","6","6","6"])
 
       newCube[1].value = array
     }else if(clickedSide.name === "F"){
-      array = rotateMidPieces(array)
-      array = rotateCornerPieces(array)
+      array = rotateMidPieces(array, direction)
+      array = rotateCornerPieces(array, direction)
 
       newCube = rotateSides(newCube, direction, ["1","5","3","0"], ["5","1","3","7"], ["8","2","0","6"], ["2","0","6","8"])
 
       newCube[2].value = array
     }else if(clickedSide.name === "R"){
-      array = rotateMidPieces(array)
-      array = rotateCornerPieces(array)
+      array = rotateMidPieces(array, direction)
+      array = rotateCornerPieces(array, direction)
 
       newCube = rotateSides(newCube, direction, ["2","5","4","0"], ["5","5","3","5"], ["8","8","0","8"], ["2","2","6","2"])
 
       newCube[3].value = array
     }else if(clickedSide.name === "B"){
-      array = rotateMidPieces(array)
-      array = rotateCornerPieces(array)
+      array = rotateMidPieces(array, direction)
+      array = rotateCornerPieces(array, direction)
 
       newCube = rotateSides(newCube, direction, ["3","5","1","0"], ["5","7","3","1"], ["8","6","0","2"], ["2","8","6","0"])
 
       newCube[4].value = array
     }else if(clickedSide.name === "D"){
-      array = rotateMidPieces(array)
-      array = rotateCornerPieces(array)
+      array = rotateMidPieces(array, direction)
+      array = rotateCornerPieces(array, direction)
 
       newCube = rotateSides(newCube, direction, ["1","4","3","2"], ["7","7","7","7"], ["6","6","6","6"], ["8","8","8","8"])
 
@@ -102,21 +102,40 @@ function App() {
     return newCube
   }
 
-  function rotateMidPieces(array){
-    let save = array[0]
-    array[0] = array[6]
-    array[6] = array[8]
-    array[8] = array[2]
-    array[2] = save
+  function rotateCornerPieces(array, direction){
+    console.log('corner')
+    if(direction === 'left'){
+      let save = array[2]
+      array[2] = array[8]
+      array[8] = array[6]
+      array[6] = array[0]
+      array[0] = save
+    }else{
+      let save = array[0]
+      array[0] = array[6]
+      array[6] = array[8]
+      array[8] = array[2]
+      array[2] = save
+    }
+    
     return array
   }
 
-  function rotateCornerPieces(array){
-    let save2 = array[1]
-    array[1] = array[3]
-    array[3] = array[7]
-    array[7] = array[5]
-    array[5] = save2
+  function rotateMidPieces(array, direction){
+    if(direction === 'left'){
+      let save2 = array[5]
+      array[5] = array[7]
+      array[7] = array[3]
+      array[3] = array[1]
+      array[1] = save2
+    }else{
+      let save2 = array[1]
+      array[1] = array[3]
+      array[3] = array[7]
+      array[7] = array[5]
+      array[5] = save2
+    }
+    
     return array
   }
 
