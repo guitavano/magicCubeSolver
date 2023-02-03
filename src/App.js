@@ -4,6 +4,8 @@ import './App.css';
 
 function App() {
 
+  document.oncontextmenu = document.body.oncontextmenu = function() {return false;}
+
   const [cube, setCube] = useState([
     {"name": "U", "value":["G1","G2","G3","G4","G5","G6","G7","G8","G9"]},
     {"name": "L", "value":["R1","R2","R3","R4","R5","R6","R7","R8","R9"]},
@@ -13,9 +15,7 @@ function App() {
     {"name": "D", "value":["B1","B2","B3","B4","B5","B6","B7","B8","B9"]},
   ])
 
-  function rotate(e, name){
-
-    let color = e.target.className.split(" ")[0]
+  function rotate(e, name, direction){
     
     let clickedSide = cube.find(side => side.name === name)
 
@@ -28,145 +28,78 @@ function App() {
     if(clickedSide.name === "U"){
       array = rotateMidPieces(array)
       array = rotateCornerPieces(array)
-      let save = newCube[1].value[1]
-      newCube[1].value[1] = newCube[2].value[1]
-      newCube[2].value[1] = newCube[3].value[1]
-      newCube[3].value[1] = newCube[4].value[1]
-      newCube[4].value[1] = save
 
-      let save2 = newCube[1].value[0]
-      newCube[1].value[0] = newCube[2].value[0]
-      newCube[2].value[0] = newCube[3].value[0]
-      newCube[3].value[0] = newCube[4].value[0]
-      newCube[4].value[0] = save2
-
-      let save3 = newCube[1].value[2]
-      newCube[1].value[2] = newCube[2].value[2]
-      newCube[2].value[2] = newCube[3].value[2]
-      newCube[3].value[2] = newCube[4].value[2]
-      newCube[4].value[2] = save3
+      newCube = rotateSides(newCube, direction, ["1","2","3","4"], ["1","1","1","1"], ["0","0","0","0"], ["2","2","2","2"])
 
       newCube[0].value = array
     }else if(clickedSide.name === "L"){
       array = rotateMidPieces(array)
       array = rotateCornerPieces(array)
-      
-      let save = newCube[4].value[5]
-      newCube[4].value[5] = newCube[5].value[3]
-      newCube[5].value[3] = newCube[2].value[3]
-      newCube[2].value[3] = newCube[0].value[3]
-      newCube[0].value[3] = save
 
-      let save2 = newCube[4].value[8]
-      newCube[4].value[8] = newCube[5].value[0]
-      newCube[5].value[0] = newCube[2].value[0]
-      newCube[2].value[0] = newCube[0].value[0]
-      newCube[0].value[0] = save2
-
-      let save3 = newCube[4].value[2]
-      newCube[4].value[2] = newCube[5].value[6]
-      newCube[5].value[6] = newCube[2].value[6]
-      newCube[2].value[6] = newCube[0].value[6]
-      newCube[0].value[6] = save3
+      newCube = rotateSides(newCube, direction, ["4","5","2","0"], ["5","3","3","3"], ["8","0","0","0"], ["2","6","6","6"])
 
       newCube[1].value = array
     }else if(clickedSide.name === "F"){
       array = rotateMidPieces(array)
       array = rotateCornerPieces(array)
 
-      let save = newCube[1].value[5]
-      newCube[1].value[5] = newCube[5].value[1]
-      newCube[5].value[1] = newCube[3].value[3]
-      newCube[3].value[3] = newCube[0].value[7]
-      newCube[0].value[7] = save
-
-      let save2 = newCube[1].value[8]
-      newCube[1].value[8] = newCube[5].value[2]
-      newCube[5].value[2] = newCube[3].value[0]
-      newCube[3].value[0] = newCube[0].value[6]
-      newCube[0].value[6] = save2
-
-      let save3 = newCube[1].value[2]
-      newCube[1].value[2] = newCube[5].value[0]
-      newCube[5].value[0] = newCube[3].value[6]
-      newCube[3].value[6] = newCube[0].value[8]
-      newCube[0].value[8] = save3
+      newCube = rotateSides(newCube, direction, ["1","5","3","0"], ["5","1","3","7"], ["8","2","0","6"], ["2","0","6","8"])
 
       newCube[2].value = array
     }else if(clickedSide.name === "R"){
       array = rotateMidPieces(array)
       array = rotateCornerPieces(array)
 
-      let save = newCube[2].value[5]
-      newCube[2].value[5] = newCube[5].value[5]
-      newCube[5].value[5] = newCube[4].value[3]
-      newCube[4].value[3] = newCube[0].value[5]
-      newCube[0].value[5] = save
-
-      let save2 = newCube[2].value[8]
-      newCube[2].value[8] = newCube[5].value[8]
-      newCube[5].value[8] = newCube[4].value[0]
-      newCube[4].value[0] = newCube[0].value[8]
-      newCube[0].value[8] = save2
-
-      let save3 = newCube[2].value[2]
-      newCube[2].value[2] = newCube[5].value[2]
-      newCube[5].value[2] = newCube[4].value[6]
-      newCube[4].value[6] = newCube[0].value[2]
-      newCube[0].value[2] = save3
+      newCube = rotateSides(newCube, direction, ["2","5","4","0"], ["5","5","3","5"], ["8","8","0","8"], ["2","2","6","2"])
 
       newCube[3].value = array
     }else if(clickedSide.name === "B"){
       array = rotateMidPieces(array)
       array = rotateCornerPieces(array)
 
-      let save = newCube[3].value[5]
-      newCube[3].value[5] = newCube[5].value[7]
-      newCube[5].value[7] = newCube[1].value[3]
-      newCube[1].value[3] = newCube[0].value[1]
-      newCube[0].value[1] = save
-      
-      let save2 = newCube[3].value[8]
-      newCube[3].value[8] = newCube[5].value[6]
-      newCube[5].value[6] = newCube[1].value[0]
-      newCube[1].value[0] = newCube[0].value[2]
-      newCube[0].value[2] = save2
-
-      let save3 = newCube[3].value[2]
-      newCube[3].value[2] = newCube[5].value[8]
-      newCube[5].value[8] = newCube[1].value[6]
-      newCube[1].value[6] = newCube[0].value[0]
-      newCube[0].value[0] = save3
-
+      newCube = rotateSides(newCube, direction, ["3","5","1","0"], ["5","7","3","1"], ["8","6","0","2"], ["2","8","6","0"])
 
       newCube[4].value = array
     }else if(clickedSide.name === "D"){
       array = rotateMidPieces(array)
       array = rotateCornerPieces(array)
 
-      let save = newCube[1].value[7]
-      newCube[1].value[7] = newCube[4].value[7]
-      newCube[4].value[7] = newCube[3].value[7]
-      newCube[3].value[7] = newCube[2].value[7]
-      newCube[2].value[7] = save
-
-      let save2 = newCube[1].value[6]
-      newCube[1].value[6] = newCube[4].value[6]
-      newCube[4].value[6] = newCube[3].value[6]
-      newCube[3].value[6] = newCube[2].value[6]
-      newCube[2].value[6] = save2
-
-      let save3 = newCube[1].value[8]
-      newCube[1].value[8] = newCube[4].value[8]
-      newCube[4].value[8] = newCube[3].value[8]
-      newCube[3].value[8] = newCube[2].value[8]
-      newCube[2].value[8] = save3
+      newCube = rotateSides(newCube, direction, ["1","4","3","2"], ["7","7","7","7"], ["6","6","6","6"], ["8","8","8","8"])
 
       newCube[5].value = array
     }
 
     setCube(newCube)
 
+  }
+
+  function rotateSides(newCube, direction, orderOfSides, orderOfMiddle, orderOfFirstCorner, orderOfSecondCorner){
+    if(direction === 'left'){
+      orderOfSides = orderOfSides.reverse()
+      orderOfMiddle = orderOfMiddle.reverse()
+      orderOfFirstCorner = orderOfFirstCorner.reverse()
+      orderOfSecondCorner = orderOfSecondCorner.reverse()
+    }
+    console.log(orderOfMiddle)
+    let save = newCube[orderOfSides[0]].value[orderOfMiddle[0]]
+    newCube[orderOfSides[0]].value[orderOfMiddle[0]] = newCube[orderOfSides[1]].value[orderOfMiddle[1]]
+    newCube[orderOfSides[1]].value[orderOfMiddle[1]] = newCube[orderOfSides[2]].value[orderOfMiddle[2]]
+    newCube[orderOfSides[2]].value[orderOfMiddle[2]] = newCube[orderOfSides[3]].value[orderOfMiddle[3]]
+    newCube[orderOfSides[3]].value[orderOfMiddle[3]] = save
+
+    let save2 = newCube[orderOfSides[0]].value[orderOfFirstCorner[0]]
+    newCube[orderOfSides[0]].value[orderOfFirstCorner[0]] = newCube[orderOfSides[1]].value[orderOfFirstCorner[1]]
+    newCube[orderOfSides[1]].value[orderOfFirstCorner[1]] = newCube[orderOfSides[2]].value[orderOfFirstCorner[2]]
+    newCube[orderOfSides[2]].value[orderOfFirstCorner[2]] = newCube[orderOfSides[3]].value[orderOfFirstCorner[3]]
+    newCube[orderOfSides[3]].value[orderOfFirstCorner[3]] = save2
+
+    let save3 = newCube[orderOfSides[0]].value[orderOfSecondCorner[0]]
+    newCube[orderOfSides[0]].value[orderOfSecondCorner[0]] = newCube[orderOfSides[1]].value[orderOfSecondCorner[1]]
+    newCube[orderOfSides[1]].value[orderOfSecondCorner[1]] = newCube[orderOfSides[2]].value[orderOfSecondCorner[2]]
+    newCube[orderOfSides[2]].value[orderOfSecondCorner[2]] = newCube[orderOfSides[3]].value[orderOfSecondCorner[3]]
+    newCube[orderOfSides[3]].value[orderOfSecondCorner[3]] = save3
+
+    return newCube
   }
 
   function rotateMidPieces(array){
@@ -190,6 +123,8 @@ function App() {
   return (
     <div className="App">
       <h1>Magic Cube Solver</h1>
+      <p>Left Click: Right Move</p>
+      <p>Right Click: Left Move</p>
       <div className='cube-container'>
       <div className='cube'>
       {cube?.map((side) => {
@@ -198,7 +133,13 @@ function App() {
           {side.value?.map((piece) => {
             if(piece.includes("5")){
               return(
-                <div className={`${piece[0]} block clicker`} onClick={(e) => rotate(e, side.name)} key={piece}>
+                <div className={`${piece[0]} block clicker`} onMouseDown={(e) => {
+                  if(e.button === 0){
+                    rotate(e, side.name, 'right')
+                  }else{
+                    rotate(e, side.name, 'left')
+                  }
+                }} key={piece}>
                   {piece}
                 </div>
               )
