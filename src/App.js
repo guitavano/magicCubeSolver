@@ -148,7 +148,7 @@ function App() {
       <div className='cube'>
       {cube?.map((side) => {
         return(
-        <div className='side' key={side.name.toString()}>
+        <div className={`${side.name} side`} key={side.name.toString()}>
           {side.value?.map((piece) => {
             if(piece.includes("5")){
               return(
