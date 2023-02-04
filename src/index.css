@@ -5,10 +5,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: lightgray;
+background: rgb(204,204,204);
+background: radial-gradient(circle, rgba(204,204,204,1) 0%, rgba(59,59,59,1) 100%);
+background: rgb(44,57,78);
+background: radial-gradient(circle, rgba(44,57,78,1) 0%, rgba(0,15,31,1) 100%);
+  height: 100vh;
 }
 
-h1, p {
+h1, h2, h3, h4 p {
   margin: 0;
 }
 

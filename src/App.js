@@ -4,16 +4,20 @@ import './App.css';
 
 function App() {
 
+  const [is3d, setIs3d] = useState(true)
+
   document.oncontextmenu = document.body.oncontextmenu = function() {return false;}
 
-  const [cube, setCube] = useState([
+  const initialCube = [
     {"name": "U", "value":["G1","G2","G3","G4","G5","G6","G7","G8","G9"]},
     {"name": "L", "value":["R1","R2","R3","R4","R5","R6","R7","R8","R9"]},
     {"name": "F", "value":["W1","W2","W3","W4","W5","W6","W7","W8","W9"]},
     {"name": "R", "value":["O1","O2","O3","O4","O5","O6","O7","O8","O9"]},
     {"name": "B", "value":["Y1","Y2","Y3","Y4","Y5","Y6","Y7","Y8","Y9"]},
     {"name": "D", "value":["B1","B2","B3","B4","B5","B6","B7","B8","B9"]},
-  ])
+  ]
+
+  const [cube, setCube] = useState(initialCube)
 
   function rotate(e, name, direction){
     
@@ -141,40 +145,55 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Magic Cube Solver - Building 🚧</h1>
-      <p>Left Click: Right Move</p>
-      <p>Right Click: Left Move</p>
-      <div className='cube-container'>
-      <div className='cube'>
-      {cube?.map((side) => {
-        return(
-        <div className={`${side.name} side`} key={side.name.toString()}>
-          {side.value?.map((piece) => {
-            if(piece.includes("5")){
-              return(
-                <div className={`${piece[0]} block clicker`} onMouseDown={(e) => {
-                  if(e.button === 0){
-                    rotate(e, side.name, 'right')
-                  }else{
-                    rotate(e, side.name, 'left')
-                  }
-                }} key={piece}>
-                  {piece}
-                </div>
-              )
-            }else{
-              return(
-                <div className={`${piece[0]} block`} key={piece}>
-                  {piece}
-                </div>
-              )
-            }
-           
-          })}
+      <header>
+        <h1>Magic Cube Solver</h1>
+
+        <div className={`mode-3d ${is3d ? 'active': ''}`}>
+          <h2>3D</h2>
+          <div className='check' onClick={(e) => setIs3d(!is3d)}>
+            <div className='circle'></div>
+          </div>
         </div>
-      )})}
-      </div>
-      </div>
+      </header>
+      <section className='main'>
+        <div className={`cube-container ${is3d ? 'active': 'not-active'}`}>
+          <div className='cube'>
+          {cube?.map((side) => {
+            return(
+            <div className={`${side.name} side`} key={side.name.toString()}>
+              {side.value?.map((piece) => {
+                if(piece.includes("5")){
+                  return(
+                    <div className={`${piece[0]} block clicker`} onMouseDown={(e) => {
+                      if(e.button === 0){
+                        rotate(e, side.name, 'right')
+                      }else{
+                        rotate(e, side.name, 'left')
+                      }
+                    }} key={piece}>
+                      {piece}
+                    </div>
+                  )
+                }else{
+                  return(
+                    <div className={`${piece[0]} block`} key={piece}>
+                      {piece}
+                    </div>
+                  )
+                }
+              
+              })}
+            </div>
+          )})}
+          </div>
+        </div>
+        <div className='buttons'>
+          <button onClick={(e) => setCube(initialCube)}>Reset</button>
+        </div>
+      </section>
+      <footer>
+        <span>By <a href='https://github.com/guitavano'>Guilherme Tavano</a></span>
+      </footer>
     </div>
   );
 }
