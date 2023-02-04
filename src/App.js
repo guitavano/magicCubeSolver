@@ -5,6 +5,7 @@ import './App.css';
 function App() {
 
   const [is3d, setIs3d] = useState(true)
+  const [showIndex, setShowIndex] = useState(false)
 
   document.oncontextmenu = document.body.oncontextmenu = function() {return false;}
 
@@ -147,11 +148,18 @@ function App() {
     <div className="App">
       <header>
         <h1>Magic Cube Solver</h1>
-
-        <div className={`mode-3d ${is3d ? 'active': ''}`}>
-          <h2>3D</h2>
-          <div className='check' onClick={(e) => setIs3d(!is3d)}>
-            <div className='circle'></div>
+        <div className='options'>
+          <div className={`sub-option ${showIndex ? 'active': ''}`}>
+            <h2>Index</h2>
+            <div className='check' onClick={(e) => setShowIndex(!showIndex)}>
+              <div className='circle'></div>
+            </div>
+          </div>
+          <div className={`sub-option ${is3d ? 'active': ''}`}>
+            <h2>3D</h2>
+            <div className='check' onClick={(e) => setIs3d(!is3d)}>
+              <div className='circle'></div>
+            </div>
           </div>
         </div>
       </header>
@@ -161,7 +169,7 @@ function App() {
           {cube?.map((side) => {
             return(
             <div className={`${side.name} side`} key={side.name.toString()}>
-              {side.value?.map((piece) => {
+              {side.value.map((piece) => {
                 if(piece.includes("5")){
                   return(
                     <div className={`${piece[0]} block clicker`} onMouseDown={(e) => {
@@ -171,13 +179,13 @@ function App() {
                         rotate(e, side.name, 'left')
                       }
                     }} key={piece}>
-                      {piece}
+                      {showIndex && piece}
                     </div>
                   )
                 }else{
                   return(
                     <div className={`${piece[0]} block`} key={piece}>
-                      {piece}
+                      {showIndex && piece}
                     </div>
                   )
                 }

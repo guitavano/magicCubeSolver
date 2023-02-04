@@ -53,11 +53,16 @@ h1{
   color: white;
 }
 
-.mode-3d h2{
+.options{
+  display: flex;
+  gap: 15px;
+}
+
+.sub-option h2{
   color: white;
 }
 
-.mode-3d .check{
+.sub-option .check{
   width: 60px;
   height: 26px;
   border-radius: 50px;
@@ -68,7 +73,7 @@ h1{
   transition: 0.5s;
 }
 
-.mode-3d .check .circle{
+.sub-option .check .circle{
   display: block;
   width: 26px;
   height: 26px;
@@ -78,11 +83,11 @@ h1{
   margin-left: 0px;
 }
 
-.mode-3d.active .check{
+.sub-option.active .check{
   background-color: green;
 }
 
-.mode-3d.active .check .circle{
+.sub-option.active .check .circle{
   margin-left: 34px;
 }
 
@@ -162,7 +167,7 @@ h1{
   margin: 3px;
   width: 60px;
   height: 60px;
-  font-size: 0px;
+  font-size: 22px;
   transition: 1s;
 }
 
@@ -234,7 +239,6 @@ h1{
   margin: 2px;
   width: 45px;
   height: 45px;
-  font-size: 0px;
   transition: 1s;
 }
 
