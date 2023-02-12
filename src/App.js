@@ -4,8 +4,9 @@ import './App.css';
 
 function App() {
 
-  const [is3d, setIs3d] = useState(true)
+  const [is3d, setIs3d] = useState(false)
   const [showIndex, setShowIndex] = useState(false)
+  const [frontSide, setFrontSide] = useState("white-front")
 
   document.oncontextmenu = document.body.oncontextmenu = function() {return false;}
 
@@ -78,35 +79,6 @@ function App() {
 
   }
 
-  function rotateSides(newCube, direction, orderOfSides, orderOfMiddle, orderOfFirstCorner, orderOfSecondCorner){
-    if(direction === 'left'){
-      orderOfSides = orderOfSides.reverse()
-      orderOfMiddle = orderOfMiddle.reverse()
-      orderOfFirstCorner = orderOfFirstCorner.reverse()
-      orderOfSecondCorner = orderOfSecondCorner.reverse()
-    }
-    console.log(orderOfMiddle)
-    let save = newCube[orderOfSides[0]].value[orderOfMiddle[0]]
-    newCube[orderOfSides[0]].value[orderOfMiddle[0]] = newCube[orderOfSides[1]].value[orderOfMiddle[1]]
-    newCube[orderOfSides[1]].value[orderOfMiddle[1]] = newCube[orderOfSides[2]].value[orderOfMiddle[2]]
-    newCube[orderOfSides[2]].value[orderOfMiddle[2]] = newCube[orderOfSides[3]].value[orderOfMiddle[3]]
-    newCube[orderOfSides[3]].value[orderOfMiddle[3]] = save
-
-    let save2 = newCube[orderOfSides[0]].value[orderOfFirstCorner[0]]
-    newCube[orderOfSides[0]].value[orderOfFirstCorner[0]] = newCube[orderOfSides[1]].value[orderOfFirstCorner[1]]
-    newCube[orderOfSides[1]].value[orderOfFirstCorner[1]] = newCube[orderOfSides[2]].value[orderOfFirstCorner[2]]
-    newCube[orderOfSides[2]].value[orderOfFirstCorner[2]] = newCube[orderOfSides[3]].value[orderOfFirstCorner[3]]
-    newCube[orderOfSides[3]].value[orderOfFirstCorner[3]] = save2
-
-    let save3 = newCube[orderOfSides[0]].value[orderOfSecondCorner[0]]
-    newCube[orderOfSides[0]].value[orderOfSecondCorner[0]] = newCube[orderOfSides[1]].value[orderOfSecondCorner[1]]
-    newCube[orderOfSides[1]].value[orderOfSecondCorner[1]] = newCube[orderOfSides[2]].value[orderOfSecondCorner[2]]
-    newCube[orderOfSides[2]].value[orderOfSecondCorner[2]] = newCube[orderOfSides[3]].value[orderOfSecondCorner[3]]
-    newCube[orderOfSides[3]].value[orderOfSecondCorner[3]] = save3
-
-    return newCube
-  }
-
   function rotateCornerPieces(array, direction){
     console.log('corner')
     if(direction === 'left'){
@@ -144,6 +116,40 @@ function App() {
     return array
   }
 
+  function rotateSides(newCube, direction, orderOfSides, orderOfMiddle, orderOfFirstCorner, orderOfSecondCorner){
+    if(direction === 'left'){
+      orderOfSides = orderOfSides.reverse()
+      orderOfMiddle = orderOfMiddle.reverse()
+      orderOfFirstCorner = orderOfFirstCorner.reverse()
+      orderOfSecondCorner = orderOfSecondCorner.reverse()
+    }
+    console.log(orderOfMiddle)
+    let save = newCube[orderOfSides[0]].value[orderOfMiddle[0]]
+    newCube[orderOfSides[0]].value[orderOfMiddle[0]] = newCube[orderOfSides[1]].value[orderOfMiddle[1]]
+    newCube[orderOfSides[1]].value[orderOfMiddle[1]] = newCube[orderOfSides[2]].value[orderOfMiddle[2]]
+    newCube[orderOfSides[2]].value[orderOfMiddle[2]] = newCube[orderOfSides[3]].value[orderOfMiddle[3]]
+    newCube[orderOfSides[3]].value[orderOfMiddle[3]] = save
+
+    let save2 = newCube[orderOfSides[0]].value[orderOfFirstCorner[0]]
+    newCube[orderOfSides[0]].value[orderOfFirstCorner[0]] = newCube[orderOfSides[1]].value[orderOfFirstCorner[1]]
+    newCube[orderOfSides[1]].value[orderOfFirstCorner[1]] = newCube[orderOfSides[2]].value[orderOfFirstCorner[2]]
+    newCube[orderOfSides[2]].value[orderOfFirstCorner[2]] = newCube[orderOfSides[3]].value[orderOfFirstCorner[3]]
+    newCube[orderOfSides[3]].value[orderOfFirstCorner[3]] = save2
+
+    let save3 = newCube[orderOfSides[0]].value[orderOfSecondCorner[0]]
+    newCube[orderOfSides[0]].value[orderOfSecondCorner[0]] = newCube[orderOfSides[1]].value[orderOfSecondCorner[1]]
+    newCube[orderOfSides[1]].value[orderOfSecondCorner[1]] = newCube[orderOfSides[2]].value[orderOfSecondCorner[2]]
+    newCube[orderOfSides[2]].value[orderOfSecondCorner[2]] = newCube[orderOfSides[3]].value[orderOfSecondCorner[3]]
+    newCube[orderOfSides[3]].value[orderOfSecondCorner[3]] = save3
+
+    return newCube
+  }
+
+  function changeFront(currentFront, direction){
+   
+    setFrontSide("orange-front")
+  }
+
   return (
     <div className="App">
       <header>
@@ -165,7 +171,7 @@ function App() {
       </header>
       <section className='main'>
         <div className={`cube-container ${is3d ? 'active': 'not-active'}`}>
-          <div className='cube'>
+          <div className={`cube ${frontSide}`}>
           {cube?.map((side) => {
             return(
             <div className={`${side.name} side`} key={side.name.toString()}>
@@ -179,7 +185,7 @@ function App() {
                         rotate(e, side.name, 'left')
                       }
                     }} key={piece}>
-                      {showIndex && piece}
+                      <img className='click' src="/click.png"/>
                     </div>
                   )
                 }else{
@@ -195,9 +201,22 @@ function App() {
           )})}
           </div>
         </div>
+
+        {
+          is3d && <div className='options-3d'>
+            <button onClick={() => setFrontSide("white-front")}>White</button>
+            <button onClick={() => setFrontSide("red-front")}>Red</button>
+            <button onClick={() => setFrontSide("green-front")}>Green</button>
+            <button onClick={() => setFrontSide("orange-front")}>Orange</button>
+            <button onClick={() => setFrontSide("blue-front")}>Blue</button>
+            <button onClick={() => setFrontSide("yellow-front")}>Yellow</button>
+        </div>
+        }
+
         <div className='buttons'>
           <button onClick={(e) => setCube(initialCube)}>Reset</button>
         </div>
+        
       </section>
       <footer>
         <span>By <a href='https://github.com/guitavano'>Guilherme Tavano</a></span>

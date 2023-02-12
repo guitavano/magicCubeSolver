@@ -146,9 +146,33 @@ h1{
   position: relative;
   transform-style: preserve-3d;
   transition: transform 1s;
-  transform: translateZ(-100px) rotateY( 45deg) rotateX(342deg) rotateZ(342deg);
-  transition: 5s;
+  transition: 1s;
 }
+
+.active .cube.white-front{
+  transform: rotateY(45deg) rotateX(-15deg) rotateZ(-15deg);
+}
+
+.active .cube.orange-front{
+  transform: rotateY(-48deg) rotateX(-15deg) rotateZ(15deg);
+}
+
+.active .cube.red-front{
+  transform: rotateY(133deg) rotateX(15deg) rotateZ(-15deg);
+}
+
+.active .cube.green-front{
+  transform: rotateY(45deg) rotateX(-90deg) rotateZ(00deg);
+}
+
+.active .cube.blue-front{
+  transform: rotateY(45deg) rotateX(90deg) rotateZ(0deg);
+}
+
+.active .cube.yellow-front{
+  transform: rotateY(225deg) rotateX(15deg) rotateZ(15deg);
+}
+
 
 .active .side{
   display: grid;
@@ -161,6 +185,13 @@ h1{
   width: 201px;
   height: 201px;
   transition: 1s;
+}
+
+.block{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
 }
 
 .active .block{
@@ -221,7 +252,7 @@ h1{
   width: 600px;
   width: 640px;
   position: relative;
-  transition: 5s;
+  transition: 1s;
 }
 
 .not-active .side{
@@ -260,4 +291,55 @@ h1{
 .not-active.cube-container{
   margin-top: -200px;
   transition: 1s;
+}
+
+.arrow{
+  opacity: 1;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+
+.arrow:hover{
+  opacity: 0.5;
+}
+
+.arrow-left{
+  top: 320px;
+  left: 300px;
+}
+
+.arrow-right{
+  top: 320px;
+  right: 300px;
+  transform: rotate(180deg);
+}
+
+.arrow-up{
+  top: 120px;
+  left: 525px;
+  transform: rotate(90deg);
+}
+
+.arrow-bottom{
+  top: 550px;
+  left: 525px;
+  transform: rotate(270deg);
+}
+
+@media (max-width: 780px) {
+  header{
+    flex-direction: column;
+  }
+}
+
+
+.click{
+  width: 50%;
+}
+
+.options-3d{
+  position: absolute;
+  bottom: 100px;
 }
