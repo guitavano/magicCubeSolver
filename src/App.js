@@ -204,12 +204,12 @@ function App() {
 
         {
           is3d && <div className='options-3d'>
-            <button onClick={() => setFrontSide("white-front")}>White</button>
-            <button onClick={() => setFrontSide("red-front")}>Red</button>
-            <button onClick={() => setFrontSide("green-front")}>Green</button>
-            <button onClick={() => setFrontSide("orange-front")}>Orange</button>
-            <button onClick={() => setFrontSide("blue-front")}>Blue</button>
-            <button onClick={() => setFrontSide("yellow-front")}>Yellow</button>
+            <button id='white' onClick={() => setFrontSide("white-front")}>White</button>
+            <button id='red' onClick={() => setFrontSide("red-front")}>Red</button>
+            <button id='green' onClick={() => setFrontSide("green-front")}>Green</button>
+            <button id='orange' onClick={() => setFrontSide("orange-front")}>Orange</button>
+            <button id='blue' onClick={() => setFrontSide("blue-front")}>Blue</button>
+            <button id='yellow' onClick={() => setFrontSide("yellow-front")}>Yellow</button>
         </div>
         }
 

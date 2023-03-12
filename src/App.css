@@ -108,27 +108,30 @@ h1{
   bottom: 20px;
 }
 
-.block.Y{
+.block.Y, #yellow{
   background-color: yellow;
 }
 
-.block.R{
+.block.R, #red{
   background-color: red;
+  color: white;
 }
 
-.block.B{
+.block.B, #blue{
   background-color: blue;
+  color: white;
 }
 
-.block.G{
+.block.G, #green{
   background-color: green;
+  color: white;
 }
 
-.block.O{
+.block.O, #orange{
   background-color: orange;
 }
 
-.block.W{
+.block.W, #white{
   background-color: white;
 }
 
@@ -341,5 +344,14 @@ h1{
 
 .options-3d{
   position: absolute;
-  bottom: 100px;
+  bottom: 70px;
+}
+
+.options-3d button, .buttons button {
+  padding: 8px;
+  margin-right: 5px;
+  width: 60px;
+  border: none;
+  border-radius: 7px;
+  font-weight: bold;
 }
