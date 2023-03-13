@@ -169,7 +169,7 @@ function App() {
           </div>
         </div>
       </header>
-      <section className='main'>
+      <section className={`main ${is3d ? 'active': ''}`}>
         <div className={`cube-container ${is3d ? 'active': 'not-active'}`}>
           <div className={`cube ${frontSide}`}>
           {cube?.map((side) => {
