@@ -1,6 +1,6 @@
-* {
+/* * {
   border: 1px solid red;
-}
+} */
 
 .App {
   display: grid;
@@ -259,7 +259,6 @@ h1{
 
 .not-active .cube{
   display: flex;
-  /* flex-wrap: wrap; */
   width: 640px;
   position: relative;
   transition: 1s;
@@ -349,6 +348,46 @@ h1{
     grid-template-rows: 0.4fr 0.6fr;
     justify-items: center;
   }
+  
+  .active.cube-container{
+    width: 180px;
+  }
+
+  .active .side{
+    grid-template-columns: 52px 52px 52px;
+    width: 156px;
+    height: 156px;
+  }
+  
+  .active .block{
+    width: 45px;
+    height: 45px;
+    rotate: 90deg;
+  }
+  
+  .active .side.U{
+    transform: rotateX( 90deg) translateZ(83px);
+  }
+  
+  .active .side.L{
+    transform: rotateY(-90deg) translateZ(83px);
+  }
+  
+  .active .side.F{
+    transform: rotateY(0deg) translateZ(83px);
+  }
+  
+  .active .side.R{
+    transform: rotateY( 90deg) translateZ(83px);
+  }
+  
+  .active .side.B{
+    transform: rotateY(180deg) translateZ(83px); 
+  }
+  
+  .active .side.D{
+    transform: rotateX(-90deg) translateZ(83px);
+  }
 
   .not-active .cube{
     rotate: 90deg;
@@ -378,17 +417,20 @@ h1{
   .click{
     rotate: -90deg;
   }
-}
 
+}
 
 .click{
   width: 50%;
 }
 
 .options-3d{
-  display: grid;
-  grid-template-columns: repeat(6, 60px);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  row-gap: 5px;
   column-gap: 5px;
+  justify-content: center;
 }
 
 .options-3d button, .buttons button {
