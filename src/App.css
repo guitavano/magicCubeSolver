@@ -1,9 +1,9 @@
 .App {
-  text-align: center;
-  display: flex;
+  display: grid;
+  grid-template-columns: 0.8fr;
+  grid-template-rows: 10vh 80vh 10vh;
   justify-content: center;
-  flex-direction: column;
-  align-items: center;
+  align-content: center;
 }
 
 .App-logo {
@@ -18,19 +18,17 @@
 }
 
 header{
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 0.9fr 0.1fr;
   align-items: center;
-  width: 100%;
-  height: 10vh;
-  max-width: 1080px;
-  margin: auto;
+  justify-content: space-between;
 }
 
 footer{
-  display: flex;
+  display: grid;
   align-items: center;
-  height: 10vh;
+  justify-items: center;
 }
 
 footer a{
@@ -49,101 +47,110 @@ footer span{
 }
 
 h1{
-  margin: 20px;
   color: white;
+  font-size: 1.8em;
 }
 
 .options{
-  display: flex;
-  gap: 15px;
+  display: grid;
+  grid-template-columns: 0.4fr 0.4fr;
+  grid-template-rows: 1fr;
+  justify-content: end;
+  column-gap: 10px;
+}
+
+.sub-option {
+  display: grid;
+  grid-template-rows: 5vh 5vh;
+  justify-content: center;
+  align-items: center;
 }
 
 .sub-option h2{
   color: white;
+  font-size: 1.3em;
+  text-align: center;
 }
 
 .sub-option .check{
-  width: 60px;
-  height: 26px;
+  width: 50px;
+  height: 20px;
   border-radius: 50px;
+  padding: 2px;
   cursor: pointer;
-  padding: 3px;
-  margin-top: 5px;
   background-color: white;
   transition: 0.5s;
+  display: grid;
+  justify-content: start;
+  align-content: center;
 }
 
 .sub-option .check .circle{
-  display: block;
-  width: 26px;
-  height: 26px;
+  width: 18px;
+  height: 18px;
   background-color: black;
   border-radius: 100%;
   transition: 0.5s;
-  margin-left: 0px;
 }
 
 .sub-option.active .check{
   background-color: green;
-}
-
-.sub-option.active .check .circle{
-  margin-left: 34px;
+  justify-content: end;
 }
 
 .main{
   width: 100%;
-  max-width: 1080px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 80vh;
-  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1.5fr 0.1fr;
+  justify-items: center;
+  align-content: center;
 }
 
-.buttons{
-  position: absolute;
-  bottom: 20px;
-}
-
-.block.Y{
+.block.Y, #yellow{
   background-color: yellow;
 }
 
-.block.R{
+.block.R, #red{
   background-color: red;
+  color: white;
 }
 
-.block.B{
+.block.B, #blue{
   background-color: blue;
+  color: white;
 }
 
-.block.G{
+.block.G, #green{
   background-color: green;
+  color: white;
 }
 
-.block.O{
+.block.O, #orange{
   background-color: orange;
 }
 
-.block.W{
+.block.W, #white{
   background-color: white;
+}
+
+.active.main {
+  display: grid;
+  grid-template-rows: 0.8fr 0.1fr 0.1fr;
+  align-items: center;
 }
 
 .active.cube-container{
   width: 200px;
   height: 200px;
   perspective: 600px;
-  margin-top: -100px;
   transition: 1s;
+  margin-bottom: 50px;
 }
 
 .active .cube{
   width: 100%;
   height: 100%;
-  position: relative;
   transform-style: preserve-3d;
   transition: transform 1s;
   transition: 1s;
@@ -248,8 +255,6 @@ h1{
 
 .not-active .cube{
   display: flex;
-  flex-wrap: wrap;
-  width: 600px;
   width: 640px;
   position: relative;
   transition: 1s;
@@ -289,7 +294,6 @@ h1{
 }
 
 .not-active.cube-container{
-  margin-top: -200px;
   transition: 1s;
 }
 
@@ -328,18 +332,108 @@ h1{
   transform: rotate(270deg);
 }
 
-@media (max-width: 780px) {
-  header{
-    flex-direction: column;
-  }
-}
+@media (max-width: 660px) {
 
+  .App{
+    grid-template-rows: 20vh 80vh 10vh;
+  }
+
+  header {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.4fr 0.6fr;
+    justify-items: center;
+  }
+  
+  .active.cube-container{
+    width: 180px;
+  }
+
+  .active .side{
+    grid-template-columns: 52px 52px 52px;
+    width: 156px;
+    height: 156px;
+  }
+  
+  .active .block{
+    width: 45px;
+    height: 45px;
+    transform: rotate(90deg);
+  }
+  
+  .active .side.U{
+    transform: rotateX( 90deg) translateZ(83px);
+  }
+  
+  .active .side.L{
+    transform: rotateY(-90deg) translateZ(83px);
+  }
+  
+  .active .side.F{
+    transform: rotateY(0deg) translateZ(83px);
+  }
+  
+  .active .side.R{
+    transform: rotateY( 90deg) translateZ(83px);
+  }
+  
+  .active .side.B{
+    transform: rotateY(180deg) translateZ(83px); 
+  }
+  
+  .active .side.D{
+    transform: rotateX(-90deg) translateZ(83px);
+  }
+
+  .block.Y, .block.R, .block.B, .block.G, .block.O, .block.W {
+    rotate: -90deg;
+  }
+
+  .not-active .cube{
+    rotate: 90deg;
+    width: 230px;
+    margin-left: 110px;
+  }
+  
+  .not-active .side {
+    grid-template-columns: repeat(3, 35px);
+    margin-top: 110px;
+  }
+
+  .not-active .block{
+    width: 30px;
+    height: 30px;
+  }
+
+  .not-active .side:first-child{
+    left: 113px;
+  }
+
+  .not-active .side:last-child{
+    left: 113px;
+    bottom: -110px;
+  }
+
+}
 
 .click{
   width: 50%;
 }
 
 .options-3d{
-  position: absolute;
-  bottom: 100px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  row-gap: 5px;
+  column-gap: 5px;
+  justify-content: center;
+}
+
+.options-3d button, .buttons button {
+  padding: 8px;
+  width: 60px;
+  height: 35px;
+  border: none;
+  border-radius: 7px;
+  font-weight: bold;
+  color: black;
 }
