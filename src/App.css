@@ -17,6 +17,10 @@
   }
 }
 
+button{
+  cursor: pointer;
+}
+
 header{
   display: grid;
   grid-template-rows: 1fr;
@@ -179,7 +183,6 @@ h1{
 .active .cube.yellow-front{
   transform: rotateY(225deg) rotateX(15deg) rotateZ(15deg);
 }
-
 
 .active .side{
   display: grid;

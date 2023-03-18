@@ -145,11 +145,6 @@ function App() {
     return newCube
   }
 
-  function changeFront(currentFront, direction){
-   
-    setFrontSide("orange-front")
-  }
-
   return (
     <div className="App">
       <header>
@@ -185,7 +180,7 @@ function App() {
                         rotate(e, side.name, 'left')
                       }
                     }} key={piece}>
-                      <img className='click' src="/click.png"/>
+                      <img className='click' alt="Click Button" src="/click.png"/>
                     </div>
                   )
                 }else{
